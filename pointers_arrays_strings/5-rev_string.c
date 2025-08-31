@@ -2,8 +2,10 @@
 
 /**
  * rev_string - reverses a string in place
- * @s: pointer to the string buffer to reverse (must be writable)
+ * @s: pointer to a writable string buffer
  *
+ * Description: Reverses the characters of s in place by swapping
+ * characters from the ends moving toward the middle.
  * Return: nothing
  */
 void rev_string(char *s)
@@ -12,16 +14,15 @@ void rev_string(char *s)
 	int j = 0;
 	char tmp;
 
-	/* احسب الطول للوصول لآخر حرف قبل '\0' */
+	/* get length (position after last char) */
 	while (s[j] != '\0')
 	{
 		j++;
 	}
 
-	/* الآن j يشير لعدد الأحرف؛ خلّه يرجع لآخر حرف */
+	/* point to last character (not the null terminator) */
 	j = j - 1;
 
-	/* بدّل من الطرفين حتى المنتصف */
 	while (i < j)
 	{
 		tmp = s[i];
