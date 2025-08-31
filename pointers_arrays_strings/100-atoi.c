@@ -1,12 +1,13 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * _atoi - converts the first number found in a string to an integer
  * @s: pointer to the string
  *
- * Description: Skips non-digits first. Each '-' before the first
- * digit flips the sign. Once digits start, builds the number until
- * a non-digit is met. If no digits exist, returns 0.
+ * Description: Flips sign for each '-' before the first digit.
+ * Builds the number from consecutive digits. If no digits exist,
+ * returns 0. Handles INT_MIN safely using (INT_MAX + 1U).
  * Return: the converted integer
  */
 int _atoi(char *s)
@@ -16,11 +17,11 @@ int _atoi(char *s)
 	unsigned int num = 0;
 	int started = 0;
 
-	/* مرّ على ما قبل الرقم: اقلب الإشارة عند '-' وتجاهل غير ذلك */
+	/* مرّ على المقدمة: اقلب الإشارة عند '-'، وابدأ عند أول رقم */
 	while (s[i] != '\0' && !started)
 	{
 		if (s[i] == '-')
-			sign *= -1;
+			sign = -sign;
 		else if (s[i] >= '0' && s[i] <= '9')
 		{
 			started = 1;
@@ -29,19 +30,22 @@ int _atoi(char *s)
 		i++;
 	}
 
-	/* لو ما بدأنا أبدًا، ما فيه أرقام */
 	if (!started)
 		return (0);
 
-	/* أكمل تجميع الأرقام المتتالية */
+	/* أجمع بقية الأرقام المتتالية */
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		num = (num * 10U) + (unsigned int)(s[i] - '0');
 		i++;
 	}
 
-	/* طبّق الإشارة (النمط المعتاد في مشاريع هولبرتون) */
+	/* طبّق الإشارة مع معالجة خاصة لـ INT_MIN */
 	if (sign < 0)
+	{
+		if (num == (unsigned int)INT_MAX + 1U)
+			return (INT_MIN);
 		return (-(int)num);
+	}
 	return ((int)num);
 }
