@@ -1,12 +1,12 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * _atoi - converts the first number found in a string to an integer
  * @s: pointer to the string
  *
- * Description: Takes into account any number of '+' and '-' signs
- * that appear before the first digit. If the string contains no
- * digits, the function returns 0.
+ * Description: Handles any number of '+' and '-' signs that appear
+ * before the first digit. If no digits are present, returns 0.
  * Return: the converted integer
  */
 int _atoi(char *s)
@@ -27,14 +27,19 @@ int _atoi(char *s)
 				started = 1;
 				num = (unsigned int)(s[i] - '0');
 			}
-			/* '+' وأي شيء آخر قبل الأرقام نتجاهله */
+			/* '+' وأي رموز أخرى قبل الأرقام تُتجاهل */
 		}
 		else
 		{
 			if (s[i] >= '0' && s[i] <= '9')
-				num = (num * 10) + (unsigned int)(s[i] - '0');
+			{
+				unsigned int digit = (unsigned int)(s[i] - '0');
+				num = (num * 10U) + digit; /* تجميع آمن (unsigned) */
+			}
 			else
+			{
 				break;
+			}
 		}
 		i++;
 	}
@@ -42,5 +47,14 @@ int _atoi(char *s)
 	if (!started)
 		return (0);
 
-	return (sign * (int)num);
+	/* معالجة INT_MIN بأمان: -2147483648 = -(INT_MAX + 1) */
+	if (sign == -1)
+	{
+		if (num == (unsigned int)INT_MAX + 1U)
+			return (INT_MIN);
+		return (-(int)num);
+	}
+
+	/* في الجانب الموجب: التحويل العادي (سلوك مثل atoi) */
+	return ((int)num);
 }
