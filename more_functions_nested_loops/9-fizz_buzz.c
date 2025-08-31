@@ -21,10 +21,10 @@ int main(void)
         else
             printf("%d", i);
 
-        if (i < 100) /* put a space after every output except the last one */
+        if (i < 100)
             printf(" ");
     }
 
-    printf("\n"); /* newline at the end */
+    printf("\n");
     return (0);
 }
