@@ -1,31 +1,30 @@
 #include "main.h"
 
 /**
- * _strcat - يدمج src في آخر dest
- * @dest: السلسلة الهدف (فيها مساحة كافية)
- * @src:  السلسلة المصدر
+ * _strcat - concatenates two strings
+ * @dest: destination string (must have enough space)
+ * @src: source string
  *
- * Return: مؤشر إلى dest
+ * Return: pointer to dest
  */
 char *_strcat(char *dest, char *src)
 {
-    int i = 0;  /* نمشي حتى نهاية dest */
-    int j = 0;  /* نمشي على src وننسخ */
+	int i = 0;
+	int j = 0;
 
-    /* 1) نصل لنهاية dest بدون لمس محتواها */
-    while (dest[i] != '\0')
-        i++;
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
 
-    /* 2) ننسخ src حرفاً حرفاً بعد نهاية dest */
-    while (src[j] != '\0')
-    {
-        dest[i] = src[j];
-        i++;
-        j++;
-    }
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
 
-    /* 3) نضيف حرف النهاية الجديد */
-    dest[i] = '\0';
+	dest[i] = '\0';
 
-    return dest;
+	return (dest);
 }
