@@ -1,14 +1,17 @@
 #include <stdio.h>
 
 /**
- * main - prints the program name (including path), then a newline
- * @argc: argument count (unused)
- * @argv: argument vector; argv[0] is the invoked program name
- * Return: 0
+ * main - prints the name used to invoke the program
+ * @argc: number of command-line arguments
+ * @argv: array of argument strings (argv[0] is the program name)
+ *
+ * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
-    (void)argc;          /* نتجاهل argc لتفادي تحذير -Wall/-Werror */
-    printf("%s\n", argv[0]);
-    return (0);
+	/* avoid unused-parameter warning */
+	(void)argc;
+
+	printf("%s\n", argv[0]);
+	return (0);
 }
