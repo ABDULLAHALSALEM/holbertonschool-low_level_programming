@@ -11,4 +11,4 @@ int main(int argc, char *argv[])
     (void)argc;          /* نتجاهل argc لتفادي تحذير -Wall/-Werror */
     printf("%s\n", argv[0]);
     return (0);
-}`
+}
