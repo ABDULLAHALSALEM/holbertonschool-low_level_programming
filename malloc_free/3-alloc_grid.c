@@ -7,7 +7,8 @@
  * @width: number of columns
  * @height: number of rows
  *
- * Return: pointer to the grid (int **), or NULL on failure/invalid size
+ * Return:
+ *   pointer to the grid (int **), or NULL on failure or invalid size
  */
 int **alloc_grid(int width, int height)
 {
