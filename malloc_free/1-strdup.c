@@ -11,24 +11,21 @@
  */
 char *_strdup(char *str)
 {
-	char *dup;
-	unsigned int len = 0, i;
+    char *dup;
+    unsigned int len = 0, i;
 
-	if (str == NULL)
-		return (NULL);
+    if (str == NULL)
+        return (NULL);
 
-	/* احسب طول السلسلة بدون استخدام دوال ممنوعة */
-	while (str[len] != '\0')
-		len++;
+    while (str[len] != '\0')
+        len++;
 
-	/* احجز (len + 1) عشان نحط '\0' في النهاية */
-	dup = malloc((len + 1) * sizeof(*dup));
-	if (dup == NULL)
-		return (NULL);
+    dup = malloc((len + 1) * sizeof(*dup));
+    if (dup == NULL)
+        return (NULL);
 
-	/* انسخ الحروف + علامة النهاية */
-	for (i = 0; i <= len; i++)
-		dup[i] = str[i];
+    for (i = 0; i <= len; i++)
+        dup[i] = str[i];
 
-	return (dup);
+    return (dup);
 }
