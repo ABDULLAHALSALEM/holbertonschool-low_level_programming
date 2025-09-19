@@ -6,8 +6,6 @@
  * @name: dog's name (string)
  * @age: dog's age
  * @owner: owner's name (string)
- *
- * Description: Defines a dog with a name, age and owner.
  */
 struct dog
 {
@@ -15,5 +13,8 @@ struct dog
 	float age;
 	char *owner;
 };
+
+/* Prototype for task 1 */
+void init_dog(struct dog *d, char *name, float age, char *owner);
 
 #endif /* DOG_H */
