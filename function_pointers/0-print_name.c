@@ -1,15 +1,15 @@
 #include "function_pointers.h"
 
 /**
- * print_name - call a function to print a name
- * @name: pointer to the name string
- * @f: function pointer that takes a char * and returns void
+ * print_name - يستدعي دالة الطباعة الممرّرة لطباعة الاسم
+ * @name: الاسم
+ * @f:    مؤشّر لدالة تأخذ (char *) ولا ترجع شيئاً
  *
- * Return: Nothing
+ * Return: لا شيء.
  */
 void print_name(char *name, void (*f)(char *))
 {
-	if (name == NULL || f == NULL)
+	if (!name || !f)
 		return;
 
 	f(name);
