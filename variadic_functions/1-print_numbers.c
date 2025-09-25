@@ -8,11 +8,11 @@
 #include "variadic_functions.h"
 
 /**
- * print_numbers - Print integers separated by @separator, then newline.
- * @separator: String printed between numbers (ignored if NULL).
- * @n:        Count of integers to print.
+ * print_numbers - prints numbers separated by a string, followed by a newline
+ * @separator: the string to print between numbers (if NULL, print nothing)
+ * @n: number of integers passed to the function
  *
- * Return: Nothing.
+ * Return: Nothing
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
@@ -25,8 +25,8 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	{
 		printf("%d", va_arg(ap, int));
 
-		/* print the separator only between numbers, not after the last */
-		if (separator && (i + 1) < n)
+		/* اطبع الفاصل فقط بين الأرقام وليس بعد آخر رقم */
+		if (separator != NULL && i < n - 1)
 			printf("%s", separator);
 	}
 
