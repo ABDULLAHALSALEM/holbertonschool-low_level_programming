@@ -1,6 +1,6 @@
 /*
  * File: 1-print_numbers.c
- * Desc: Print a variable number of integers with an optional separator.
+ * Desc: Print integers with an optional separator.
  */
 
 #include <stdio.h>
@@ -8,9 +8,9 @@
 #include "variadic_functions.h"
 
 /**
- * print_numbers - prints numbers separated by a string, followed by a newline
- * @separator: the string to print between numbers (if NULL, print nothing)
- * @n: number of integers passed to the function
+ * print_numbers - prints numbers separated by a string, then newline
+ * @separator: string printed between numbers (ignored if NULL)
+ * @n:        count of integers to print
  *
  * Return: Nothing
  */
@@ -25,8 +25,8 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	{
 		printf("%d", va_arg(ap, int));
 
-		/* اطبع الفاصل فقط بين الأرقام وليس بعد آخر رقم */
-		if (separator != NULL && i < n - 1)
+		/* print sep only between numbers */
+		if (separator && (i + 1) < n)
 			printf("%s", separator);
 	}
 
