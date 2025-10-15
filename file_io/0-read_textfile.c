@@ -1,16 +1,19 @@
 #include "main.h"
 
 /**
- * read_textfile - reads a text file and prints it to POSIX standard output.
- * @filename: path to the text file.
- * @letters: number of bytes to read and print.
+ * read_textfile - Read a text file and print it to POSIX standard output.
+ * @filename: Path to the text file.
+ * @letters:  Number of bytes to read and print.
  *
- * Return: the actual number of bytes printed, or 0 on any failure.
+ * Return: The actual number of bytes printed,
+ *         or 0 on any failure (open/read/write error, or filename is NULL).
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	ssize_t rcount, wcount, total = 0;
+	ssize_t rcount;
+	ssize_t wcount;
+	ssize_t total;
 	char *buf;
 
 	if (filename == NULL || letters == 0)
@@ -35,6 +38,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
+	total = 0;
 	while (total < rcount)
 	{
 		wcount = write(STDOUT_FILENO, buf + total, rcount - total);
